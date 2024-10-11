@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  /* background: radial-gradient(#ffffff, #232323 80%); */
+  /* background-color: black; */
+  font-family: "Cherry Bomb One", system-ui;
+  background-image: url("/images/bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+body {
+  margin: 0;
+}
+
+.outline-text {
+  -webkit-text-stroke: 1px white;
+}
