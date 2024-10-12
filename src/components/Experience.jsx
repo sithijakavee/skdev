@@ -9,38 +9,38 @@ import { useEffect, useState } from "react";
 import { Color, MeshBasicMaterial, MeshStandardMaterial } from "three";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import cardHomeBg from "../../public/images/cardHome.jpg";
-import cardHelpBg from "../../public/images/cardHelp.jpg";
-import cardAboutBg from "../../public/images/cardAbout.jpg";
-import cardFizzyBg from "../../public/images/cardFizzy.jpg";
+import cardHomeBg from "/images/cardHome.jpg";
+import cardHelpBg from "/images/cardHelp.jpg";
+import cardAboutBg from "/images/cardAbout.jpg";
+import cardFizzyBg from "/images/cardFizzy.jpg";
 export const Experience = ({ setLoading, pageNo, setPageNo }) => {
   const [hovered, setHovered] = useState(false);
 
   const whiteColor = new Color("white");
   let colorMap;
   let link;
-  
+  colorMap = useLoader(TextureLoader, cardHomeBg);
+     link = "/";
   useEffect(() => {
     setLoading(false);
-     colorMap = useLoader(TextureLoader, cardHomeBg);
-     link = "/";
+     
   }, []);
 
   // useLoader(TextureLoader, cardBg);
 
-  if (pageNo == 0) {
-    colorMap = useLoader(TextureLoader, cardHomeBg);
-    link = "";
-  } else if (pageNo == 1) {
-    colorMap = useLoader(TextureLoader, cardHelpBg);
-    link = "";
-  } else if (pageNo == 2) {
-    colorMap = useLoader(TextureLoader, cardAboutBg);
-    link = "";
-  } else if (pageNo == 3) {
-    colorMap = useLoader(TextureLoader, cardFizzyBg);
-    link = "https://stackoverflow.com/";
-  }
+  // if (pageNo == 0) {
+  //   colorMap = useLoader(TextureLoader, cardHomeBg);
+  //   link = "";
+  // } else if (pageNo == 1) {
+  //   colorMap = useLoader(TextureLoader, cardHelpBg);
+  //   link = "";
+  // } else if (pageNo == 2) {
+  //   colorMap = useLoader(TextureLoader, cardAboutBg);
+  //   link = "";
+  // } else if (pageNo == 3) {
+  //   colorMap = useLoader(TextureLoader, cardFizzyBg);
+  //   link = "https://stackoverflow.com/";
+  // }
 
   useCursor(hovered);
 

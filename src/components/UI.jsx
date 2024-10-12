@@ -1,6 +1,6 @@
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
-
+import soundEffect from "/audios/page-flip-01a.mp3"
 const pictures = [
   "coverback",
   "helppage",
@@ -73,7 +73,7 @@ export const UI = () => {
   const [page, setPage] = useAtom(pageAtom);
 
   useEffect(() => {
-    const audio = new Audio("/audios/page-flip-01a.mp3");
+    const audio = new Audio(soundEffect);
     audio.play();
   }, [page]);
 
