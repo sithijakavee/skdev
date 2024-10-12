@@ -9,44 +9,51 @@ import { useEffect, useState } from "react";
 import { Color, MeshBasicMaterial, MeshStandardMaterial } from "three";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import cardBg from "../../public/images/card.jpg";
 import cardHomeBg from "../../public/images/cardHome.jpg";
+import cardHelpBg from "../../public/images/cardHelp.jpg";
+import cardAboutBg from "../../public/images/cardAbout.jpg";
+import cardFizzyBg from "../../public/images/cardFizzy.jpg";
 export const Experience = ({ setLoading, pageNo, setPageNo }) => {
   const [hovered, setHovered] = useState(false);
-  
 
   const whiteColor = new Color("white");
-
   let colorMap;
   let link;
+  
+  useEffect(() => {
+    setLoading(false);
+     colorMap = useLoader(TextureLoader, cardHomeBg);
+     link = "/";
+  }, []);
+
   // useLoader(TextureLoader, cardBg);
 
-
-
-  if(pageNo == 0){
-    colorMap = useLoader(TextureLoader, cardHomeBg)
-    link=""
-  }
-  else if(pageNo == 1){
-    colorMap = useLoader(TextureLoader, cardBg)
-    link="https://stackoverflow.com/"
+  if (pageNo == 0) {
+    colorMap = useLoader(TextureLoader, cardHomeBg);
+    link = "";
+  } else if (pageNo == 1) {
+    colorMap = useLoader(TextureLoader, cardHelpBg);
+    link = "";
+  } else if (pageNo == 2) {
+    colorMap = useLoader(TextureLoader, cardAboutBg);
+    link = "";
+  } else if (pageNo == 3) {
+    colorMap = useLoader(TextureLoader, cardFizzyBg);
+    link = "https://stackoverflow.com/";
   }
 
   useCursor(hovered);
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+
   return (
     <>
-    
-      <Book pageNo={pageNo} setPageNo={setPageNo}/>
+      <Book pageNo={pageNo} setPageNo={setPageNo} />
       <OrbitControls
         minAzimuthAngle={-Math.PI / 4}
         maxAzimuthAngle={Math.PI / 4}
         minPolarAngle={Math.PI / 6}
         maxPolarAngle={Math.PI - Math.PI / 6}
       />
-      <Environment preset="sunset"/>
+      <Environment preset="sunset" />
       <directionalLight
         position={[2, 5, 2]}
         intensity={0}
@@ -81,7 +88,6 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
           <meshStandardMaterial map={colorMap} />
         </mesh>
       </group>
-
     </>
   );
 };
