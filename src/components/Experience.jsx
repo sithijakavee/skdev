@@ -1,26 +1,52 @@
-import { Environment, Float, OrbitControls } from "@react-three/drei";
+import {
+  Environment,
+  Float,
+  OrbitControls,
+  useCursor,
+} from "@react-three/drei";
 import { Book } from "./Book";
-import { useEffect } from "react";
-export const Experience = ({ setLoading }) => {
+import { useEffect, useState } from "react";
+import { Color, MeshBasicMaterial, MeshStandardMaterial } from "three";
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import cardBg from "../../public/images/card.jpg";
+import cardHomeBg from "../../public/images/cardHome.jpg";
+export const Experience = ({ setLoading, pageNo, setPageNo }) => {
+  const [hovered, setHovered] = useState(false);
+  
+
+  const whiteColor = new Color("white");
+
+  let colorMap;
+  let link;
+  // useLoader(TextureLoader, cardBg);
+
+
+
+  if(pageNo == 0){
+    colorMap = useLoader(TextureLoader, cardHomeBg)
+    link=""
+  }
+  else if(pageNo == 1){
+    colorMap = useLoader(TextureLoader, cardBg)
+    link="https://stackoverflow.com/"
+  }
+
+  useCursor(hovered);
   useEffect(() => {
     setLoading(false);
   }, []);
   return (
     <>
-      {/* <Float
-        speed={1} // Animation speed, defaults to 1
-        rotationIntensity={1} // XYZ rotation intensity, defaults to 1
-        floatIntensity={0.2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-        // floatingRange={[1, 10]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-      > */}
-      <Book />
-      <OrbitControls 
-       minAzimuthAngle={-Math.PI / 4}
-       maxAzimuthAngle={Math.PI / 4}
-       minPolarAngle={Math.PI / 6}
-       maxPolarAngle={Math.PI - Math.PI / 6}
+    
+      <Book pageNo={pageNo} setPageNo={setPageNo}/>
+      <OrbitControls
+        minAzimuthAngle={-Math.PI / 4}
+        maxAzimuthAngle={Math.PI / 4}
+        minPolarAngle={Math.PI / 6}
+        maxPolarAngle={Math.PI - Math.PI / 6}
       />
-      <Environment preset="sunset"></Environment>
+      <Environment preset="sunset"/>
       <directionalLight
         position={[2, 5, 2]}
         intensity={0}
@@ -29,11 +55,33 @@ export const Experience = ({ setLoading }) => {
         shadow-mapSize-height={2048}
         shadow-bias={-0.0001}
       />
-      <mesh position-y={-1.5} rotation-x={-Math.PI / 2} receiveShadow>
+      <mesh
+        position-y={-0.5}
+        position-x={-1}
+        rotation-x={-Math.PI / 2.4}
+        receiveShadow
+      >
         <planeGeometry args={[100, 100]} />
         <shadowMaterial transparent opacity={0.2} />
       </mesh>
-      {/* </Float> */}
+      <group>
+        <mesh
+          position={[0.5, 1.1, 1]}
+          onClick={() => link != "" && window.open(link)}
+          onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+          }}
+          onPointerLeave={(e) => {
+            e.stopPropagation();
+            setHovered(false);
+          }}
+        >
+          <boxGeometry args={[0.6, 0.2, 0.1]} />
+          <meshStandardMaterial map={colorMap} />
+        </mesh>
+      </group>
+
     </>
   );
 };

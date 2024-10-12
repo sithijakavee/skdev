@@ -93,7 +93,7 @@ pages.forEach((page) => {
   useTexture.preload(`/textures/book-cover-roughness.jpg`);
 });
 
-const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBookOpened, ...props }) => {
+const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBookOpened, pageNo, setPageNo, ...props }) => {
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
@@ -255,10 +255,10 @@ const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBo
       onClick={(e) => {
         
         setBookOpened( opened ? number : number + 1 != 0)
-        console.log(bookOpened)
         e.stopPropagation();
         setPage(opened ? number : number + 1);
         setHighlighted(false);
+        setPageNo(opened ? number : number + 1)
       }}
     >
       <primitive
@@ -270,7 +270,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBo
   );
 };
 
-export const Book = ({ ...props }) => {
+export const Book = ({pageNo, setPageNo, ...props }) => {
   const [page] = useAtom(pageAtom);
   const [delayedPage, setDelayedPage] = useState(page);
   const [bookOpened, setBookOpened] = useState(false);
@@ -284,7 +284,7 @@ export const Book = ({ ...props }) => {
       gsap.to(bookRef.current.position, {x: -.7, y:0, z:1, duration: 1.5})
     }
     else{
-      gsap.to(bookRef.current.position, {x: 0, y:0, z:0, duration: 1.5})
+      gsap.to(bookRef.current.position, {x: 0, y:0, z:1, duration: 1.5})
     }
   }, [bookOpened])
 
@@ -330,6 +330,8 @@ export const Book = ({ ...props }) => {
           bookOpened={bookOpened}
           setBookOpened={setBookOpened}
           {...pageData}
+          pageNo={pageNo} 
+          setPageNo={setPageNo}
           
         />
       ))}
