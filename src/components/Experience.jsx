@@ -28,19 +28,19 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
 
   // useLoader(TextureLoader, cardBg);
 
-  // if (pageNo == 0) {
-  //   colorMap = useLoader(TextureLoader, cardHomeBg);
-  //   link = "";
-  // } else if (pageNo == 1) {
-  //   colorMap = useLoader(TextureLoader, cardHelpBg);
-  //   link = "";
-  // } else if (pageNo == 2) {
-  //   colorMap = useLoader(TextureLoader, cardAboutBg);
-  //   link = "";
-  // } else if (pageNo == 3) {
-  //   colorMap = useLoader(TextureLoader, cardFizzyBg);
-  //   link = "https://stackoverflow.com/";
-  // }
+  if (pageNo == 0) {
+    colorMap = useLoader(TextureLoader, cardHomeBg);
+    link = "";
+    setLoading(false)
+  } else if (pageNo == 3) {
+    colorMap = useLoader(TextureLoader, cardFizzyBg);
+    link = "https://stackoverflow.com/";
+  }
+  else{
+    colorMap = useLoader(TextureLoader, cardHomeBg);
+    link = "";
+    setLoading(false)
+  }
 
   useCursor(hovered);
 
