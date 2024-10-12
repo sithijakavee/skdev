@@ -19,7 +19,6 @@ export const Experience = ({ setLoading }) => {
        maxAzimuthAngle={Math.PI / 4}
        minPolarAngle={Math.PI / 6}
        maxPolarAngle={Math.PI - Math.PI / 6}
-      
       />
       <Environment preset="sunset"></Environment>
       <directionalLight

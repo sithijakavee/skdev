@@ -281,7 +281,7 @@ export const Book = ({ ...props }) => {
 
   useGSAP(() => {
     if(!bookOpened){
-      gsap.to(bookRef.current.position, {x: -.7, y:0, z:0, duration: 1.5})
+      gsap.to(bookRef.current.position, {x: -.7, y:0, z:1, duration: 1.5})
     }
     else{
       gsap.to(bookRef.current.position, {x: 0, y:0, z:0, duration: 1.5})
@@ -319,7 +319,7 @@ export const Book = ({ ...props }) => {
   }, [page]);
 
   return (
-    <group {...props} rotation-y={-Math.PI / 2}ref={bookRef}>
+    <group {...props} rotation-y={-Math.PI / 2} ref={bookRef} >
       {[...pages].map((pageData, index) => (
         <Page
           key={index}
