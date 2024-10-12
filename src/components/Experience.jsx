@@ -14,7 +14,13 @@ export const Experience = ({ setLoading }) => {
         // floatingRange={[1, 10]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
       > */}
       <Book />
-      <OrbitControls />
+      <OrbitControls 
+       minAzimuthAngle={-Math.PI / 4}
+       maxAzimuthAngle={Math.PI / 4}
+       minPolarAngle={Math.PI / 6}
+       maxPolarAngle={Math.PI - Math.PI / 6}
+      
+      />
       <Environment preset="sunset"></Environment>
       <directionalLight
         position={[2, 5, 2]}
