@@ -17,30 +17,21 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
   const [hovered, setHovered] = useState(false);
 
   const whiteColor = new Color("white");
-  let colorMap;
+
   let link;
-  colorMap = useLoader(TextureLoader, cardHomeBg);
+
+  const homeMap = useLoader(TextureLoader, cardHomeBg);
+  const helpMap = useLoader(TextureLoader, cardHelpBg);
+  const aboutMap = useLoader(TextureLoader, cardAboutBg);
+  const fizzyMap = useLoader(TextureLoader, cardFizzyBg);
+
      link = "/";
+
+
   useEffect(() => {
     setLoading(false);
      
   }, []);
-
-  // useLoader(TextureLoader, cardBg);
-
-  if (pageNo == 0) {
-    colorMap = useLoader(TextureLoader, cardHomeBg);
-    link = "";
-    setLoading(false)
-  } else if (pageNo == 3) {
-    colorMap = useLoader(TextureLoader, cardFizzyBg);
-    link = "https://stackoverflow.com/";
-  }
-  else{
-    colorMap = useLoader(TextureLoader, cardHomeBg);
-    link = "";
-    setLoading(false)
-  }
 
   useCursor(hovered);
 
@@ -71,6 +62,8 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
         <planeGeometry args={[100, 100]} />
         <shadowMaterial transparent opacity={0.2} />
       </mesh>
+
+
       <group>
         <mesh
           position={[0.5, 1.1, 1]}
@@ -85,7 +78,55 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
           }}
         >
           <boxGeometry args={[0.6, 0.2, 0.1]} />
-          <meshStandardMaterial map={colorMap} />
+          <meshStandardMaterial map={homeMap} opacity={pageNo == 0 ? 1 : 0} transparent={true}/>
+        </mesh>
+
+        <mesh
+          position={[0.5, 1.1, 1]}
+          onClick={() => link != "" && window.open(link)}
+          onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+          }}
+          onPointerLeave={(e) => {
+            e.stopPropagation();
+            setHovered(false);
+          }}
+        >
+          <boxGeometry args={[0.6, 0.2, 0.1]} />
+          <meshStandardMaterial map={helpMap} opacity={pageNo == 1 ? 1 : 0} transparent={true}/>
+        </mesh>
+
+        <mesh
+          position={[0.5, 1.1, 1]}
+          onClick={() => link != "" && window.open(link)}
+          onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+          }}
+          onPointerLeave={(e) => {
+            e.stopPropagation();
+            setHovered(false);
+          }}
+        >
+          <boxGeometry args={[0.6, 0.2, 0.1]} />
+          <meshStandardMaterial map={aboutMap} opacity={pageNo == 2 ? 1 : 0} transparent={true}/>
+        </mesh>
+
+        <mesh
+          position={[0.5, 1.1, 1]}
+          onClick={() => link != "" && window.open(link)}
+          onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+          }}
+          onPointerLeave={(e) => {
+            e.stopPropagation();
+            setHovered(false);
+          }}
+        >
+          <boxGeometry args={[0.6, 0.2, 0.1]} />
+          <meshStandardMaterial map={fizzyMap} opacity={pageNo == 3 ? 1 : 0} transparent={true}/>
         </mesh>
       </group>
     </>

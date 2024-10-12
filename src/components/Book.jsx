@@ -94,6 +94,8 @@ pages.forEach((page) => {
 });
 
 const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBookOpened, pageNo, setPageNo, ...props }) => {
+  
+  
   const [picture, picture2, pictureRoughness] = useTexture([
     `/textures/${front}.jpg`,
     `/textures/${back}.jpg`,
@@ -239,6 +241,7 @@ const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBo
   const [_, setPage] = useAtom(pageAtom);
   const [highlighted, setHighlighted] = useState(false);
   useCursor(highlighted);
+
 
   return (
     <group
