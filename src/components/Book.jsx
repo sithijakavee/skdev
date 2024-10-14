@@ -104,7 +104,6 @@ const Page = ({ number, front, back, page, opened, bookClosed, bookOpened, setBo
       : []),
   ]);
   useEffect(() => {
-    console.log(page)
   }, [page])
   picture.colorSpace = picture2.colorSpace = SRGBColorSpace;
   const group = useRef();
@@ -293,7 +292,7 @@ export const Book = ({pageNo, setPageNo, ...props }) => {
 
 
   useEffect(() => {
-    console.log(bookRef.current)
+    // console.log(bookRef.current)
     let timeout;
     const goToPage = () => {
       setDelayedPage((delayedPage) => {

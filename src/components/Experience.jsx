@@ -7,24 +7,13 @@ import {
 import { Book } from "./Book";
 import { useEffect, useState } from "react";
 import { Color, MeshBasicMaterial, MeshStandardMaterial } from "three";
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
-import cardHomeBg from "/images/cardHome.jpg";
-import cardHelpBg from "/images/cardHelp.jpg";
-import cardAboutBg from "/images/cardAbout.jpg";
-import cardFizzyBg from "/images/cardFizzy.jpg";
+
 export const Experience = ({ setLoading, pageNo, setPageNo }) => {
   const [hovered, setHovered] = useState(false);
 
   const whiteColor = new Color("white");
 
   let link;
-
-  const homeMap = useLoader(TextureLoader, cardHomeBg);
-  const helpMap = useLoader(TextureLoader, cardHelpBg);
-  const aboutMap = useLoader(TextureLoader, cardAboutBg);
-  const fizzyMap = useLoader(TextureLoader, cardFizzyBg);
-
      link = "/";
 
 

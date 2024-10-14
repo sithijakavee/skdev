@@ -14,14 +14,14 @@ function App() {
   useEffect(() => {
     const width = screen.width;
 
-    console.log(width);
+    // console.log(width);
 
     if (width < 500) {
       setIsMobile(true);
     }
   }, []);
 
-  console.log(pageNo)
+  // console.log(pageNo)
 
   return (
     <>
