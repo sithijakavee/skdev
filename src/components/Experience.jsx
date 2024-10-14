@@ -64,7 +64,7 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
       </mesh>
 
 
-      <group>
+      {/* <group>
         <mesh
           position={[0.5, 1.1, 1]}
           onClick={() => link != "" && window.open(link)}
@@ -128,7 +128,7 @@ export const Experience = ({ setLoading, pageNo, setPageNo }) => {
           <boxGeometry args={[0.6, 0.2, 0.1]} />
           <meshStandardMaterial map={fizzyMap} opacity={pageNo == 3 ? 1 : 0} transparent={true}/>
         </mesh>
-      </group>
+      </group> */}
     </>
   );
 };
